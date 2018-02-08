@@ -1,0 +1,219 @@
+/**
+ * @package IcoFont by ShapeBootstrap - https://shapebootstrap.net
+ * @version 1.0.0 Beta
+ * @author IcoFont http://icofont.com
+ * @copyright Copyright (c) 2017 IcoFont
+ * @license - http://icofont.com/license/
+*/
+
+@font-face {
+    font-family: 'icofont';
+    src: url('../css/icofont.ttf?v=1.0.0-beta') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.icofont {
+    font-family: 'IcoFont' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.icofont-bag-alt:before {
+	content: "\ec9b";
+}
+.icofont-burglar:before {
+	content: "\ec9c";
+}
+.icofont-cannon-firing:before {
+	content: "\ec9d";
+}
+.icofont-cc-camera:before {
+	content: "\ec9e";
+}
+.icofont-cop-badge:before {
+	content: "\ec9f";
+}
+.icofont-cop:before {
+	content: "\eca0";
+}
+.icofont-court-hammer:before {
+	content: "\eca1";
+}
+.icofont-court:before {
+	content: "\eca2";
+}
+.icofont-finger-print:before {
+	content: "\eca3";
+}
+.icofont-handcuff-alt:before {
+	content: "\eca4";
+}
+.icofont-handcuff:before {
+	content: "\eca5";
+}
+.icofont-investigation:before {
+	content: "\eca6";
+}
+.icofont-investigator:before {
+	content: "\eca7";
+}
+.icofont-jail:before {
+	content: "\eca8";
+}
+.icofont-judge:before {
+	content: "\eca9";
+}
+.icofont-law-alt-1:before {
+	content: "\ecaa";
+}
+.icofont-law-alt-2:before {
+	content: "\ecab";
+}
+.icofont-law-alt-3:before {
+	content: "\ecac";
+}
+.icofont-law-book:before {
+	content: "\ecad";
+}
+.icofont-law-document:before {
+	content: "\ecae";
+}
+.icofont-law:before {
+	content: "\ecaf";
+}
+.icofont-lawyer-alt-1:before {
+	content: "\ecb0";
+}
+.icofont-lawyer-alt-2:before {
+	content: "\ecb1";
+}
+.icofont-lawyer:before {
+	content: "\ecb2";
+}
+.icofont-order:before {
+	content: "\ecb3";
+}
+.icofont-pistol:before {
+	content: "\ecb4";
+}
+.icofont-police-badge:before {
+	content: "\ecb5";
+}
+.icofont-police-cap:before {
+	content: "\ecb6";
+}
+.icofont-police-car-alt-1:before {
+	content: "\ecb7";
+}
+.icofont-police-car-alt-2:before {
+	content: "\ecb8";
+}
+.icofont-police-hat:before {
+	content: "\ecb9";
+}
+.icofont-police-van:before {
+	content: "\ecba";
+}
+.icofont-police:before {
+	content: "\ecbb";
+}
+.icofont-protect:before {
+	content: "\ecbc";
+}
+.icofont-scales:before {
+	content: "\ecbd";
+}
+.icofont-thief-alt:before {
+	content: "\ecbe";
+}
+.icofont-thief:before {
+	content: "\ecbf";
+}
+
+/*Font size*/
+.icofont-lg {
+    font-size: 1.33333333em;
+    line-height: .75em;
+    vertical-align: -15%
+}
+
+.icofont-2x {
+    font-size: 2em
+}
+
+.icofont-3x {
+    font-size: 3em
+}
+
+.icofont-4x {
+    font-size: 4em
+}
+
+.icofont-5x {
+    font-size: 5em
+}
+
+.icofont-fw {
+    display: inline-block;
+    width: 1.28571429em;
+    text-align: center
+}
+
+/*Fixed Width Icons*/
+.icofont-fw {
+    width: 1.28571429em;
+    text-align: center;
+}
+
+/*Custom list icons*/
+.icofont-ul {
+    padding-left: 0;
+    margin-left: 2.14285714em;
+    list-style-type: none;
+}
+.icofont-ul>li {
+    position: relative;
+}
+.icofont-li {
+    position: absolute;
+    left: -2.14285714em;
+    width: 2.14285714em;
+    top: .14285714em;
+    text-align: center;
+}
+
+/*Animation*/
+.icofont-rotate {
+    -webkit-animation: icofont-rotate 2s infinite linear;
+    animation: icofont-rotate 2s infinite linear
+}
+
+@-webkit-keyframes icofont-rotate {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg)
+    }
+}
+
+@keyframes icofont-rotate {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg)
+    }
+}

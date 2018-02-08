@@ -1,0 +1,80 @@
+/* Developed By: Dreamcare Developers
+ * url: https://www.facebook.com/dreamcaredevelopers/
+*/
+
+
+
+
+/*########################################*/
+/*Responsive Queries*/
+
+/* 480px and above */
+@media (min-width:1400px) {
+}
+
+@media (min-width:768px) and (max-width:1200px) {
+	header ul.nav li { font-size:15px; }
+	header .navbar-nav>li>a { padding-left: 5px; padding-right: 5px; }
+	header ul.navbar-right li:before, ul.navbar-right li:before, ul.navbar-left li:before, ul.navbar-left li:before { top:0.95em; }
+}
+
+@media (min-width:480px) and (max-width:767px) {
+}
+
+/* 320px to big */
+@media (min-width:320px) and (max-width:1023px) {
+}
+
+@media (max-width:768px) {
+    header .lost:before{
+        right: 0em!important;
+        width: 139px!important;
+        top: -14em!important;
+    }
+	header .row_main { border: none; }
+	header ul.navbar-right li:before,
+	header ul.navbar-left li:before{
+		content:"";
+	}
+    header .text-small-center { text-align: center }
+
+	#home .cover_im {
+		position: fixed;
+		height: 100vh;
+		width: auto;
+	}
+	#home .container-fluid { margin-top: 15vh; }
+	#home .bk_frm, #home .intro_text { background: rgba(10,10,10,.55); }
+	#home .bk_frm button { width: 80%; }
+	#home .bk_frm button:hover, #home .bk_frm button:focus { width: 75%; }
+
+	#rooms { padding: 10px; }
+	#rooms ul li { display: inline-block; }
+	.tile_main { height: 40vh; }
+
+	.extra_main .col-md-6 { padding-bottom: 20px; }
+	.extra_main { padding: 20px 10px; }
+}
+
+@media (min-width:320px) and (max-width:600px) {
+	header img.logo {
+		position: absolute;
+		top: 35px;
+		right: 10px;
+	}
+}
+
+/*Using max-width*/
+@media (max-width: 740px) and (orientation: landscape) {
+}
+
+@media (max-width: 480px) {
+}
+
+@media (max-width: 319px) {
+}
+
+
+
+
+/*End Of File*/

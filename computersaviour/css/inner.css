@@ -1,0 +1,109 @@
+/* Developed By: Dreamcare Developers
+ * url: dreamcaredevelopers.com/
+*/
+
+.inner { margin-top: 10px; }
+
+/*heading*/
+@media {
+	#heading { overflow: hidden; }
+	#heading h3 {
+		text-transform: uppercase;
+		font-weight: 600;
+		letter-spacing: 2px;
+		padding: 10px;
+	}
+	#heading h3 span {
+		display: inline-block;
+		position: relative;
+		padding: 0 10px;
+	}
+	#heading h3 span::before,
+	#heading h3 span::after {
+		content: "";
+		position: absolute;
+		top: 35%;
+		width: 50vw;
+		border-top: 4px solid lightgrey;
+	}
+	#heading h3 span::before { right: 100%; }
+	#heading h3 span::after { left: 100%; }
+}
+
+/* Content */
+@media {
+	.inner .content { padding: 10px 0 0; }
+	.inner .card {
+		padding: 10px 6px;
+		background: #fff;
+		box-shadow: 0 0 5px 0 rgba(0,0,0,.3);
+	}
+	.inner .main-data-head, .inner .main-data { padding-left: 10%; }
+	.inner hr.separator { border-top-color: #000; }
+	.inner .row { margin: 0; }
+	.inner a { color: #003781; }
+	
+	.main-data * { font-weight: 100; }
+	.main-data .tile-short,
+	.main-data .tile-short span.fa {
+		display: inline-flex;
+		color: #fff;
+		font-style: italic;
+	}
+	.main-data .tile-short {
+		padding: 8px 6px;
+		background: rgb(57,73,169);
+	}
+	.main-data .tile-short span { padding: 0 5px; }
+	.padding-inner { padding: 0 6px; }
+	
+	.tile-card {
+		box-shadow: 0 0 12px 0 rgba(0,0,0,.3);
+		background: #fff;
+	}
+	.tile-card a { line-height: 1rem; }
+	.tile-card a span { padding-right: 6px; }
+	.contact-image img, .tile-image img { width: 100%; }
+	.contact-image img { padding: 5px; }
+	.contact-text, .tile-text { padding: 6px; }
+	.contact-text a { color: #000; }
+}
+
+/* Sidebar */
+@media {
+	.sidebar .container-fluid { margin: 10px 0; }
+	.sidebar img { height: 100%; margin: auto auto; padding: 30px 0; }
+	#main-tiles .tile-text {
+		position: absolute;
+		bottom: 4px;
+		left: 8%;
+		font-size: .9rem;
+		font-weight: 600;
+	}
+}
+
+/*Options*/
+@media {
+	.options h4 { margin: 4px; }
+	.options button { border-radius: 1px; background-color: #ff6e42; margin-top: 10px; border: none; }
+	.options button:hover, .options button:focus { background-color: #3c4ab5; }
+	.options input, .options textarea, .options select, .options option {
+		width: 100%;
+		border: 1px solid lightgrey;
+		line-height: 1.2rem;
+		font-size: .9rem;
+		padding: 4px;
+		color: grey;
+		background: rgba(150,150,150,.1);
+	}
+	.options input { padding: 6px; }
+	.options span.fa {
+		position: absolute;
+		top: 60%;
+		right: 10%;
+		color: grey;				
+	}
+	
+}
+
+/* END of File */

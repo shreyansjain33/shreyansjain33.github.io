@@ -53,3 +53,8 @@ function clickNav(e) {
     }
   });
 }
+
+// FullPage
+(function() {
+  $('#main-view').fullpage();
+})();

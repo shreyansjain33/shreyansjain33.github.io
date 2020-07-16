@@ -28,7 +28,7 @@
 		margin-left: 0px;
 		padding: 20px 0;
 	}
-	.collapse-header .menu .collapse-nav a { margin-left: 40px; }
+	.collapse-header .menu .collapse-nav a { margin-left: 40px; font-family: 'RobotoMono-Regular', monospace; }
 	.collapse-header .menu .collapse-nav a:nth-child(1) {
 		border-top: 1px solid #eee!important;
 		padding-top: 20px;

@@ -1,7 +1,7 @@
 
 
 function h4ck3d(){
-	alert("Working!");
+	//alert("Working!");
 	var uname = $("#username").val();
 	var passw = $("#label2").val();
 	alert("Wanna get hacked?\n" + uname +":"+ passw);

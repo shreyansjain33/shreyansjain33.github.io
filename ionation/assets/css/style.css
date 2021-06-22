@@ -80,7 +80,7 @@ html, body {
 	position: absolute;
 	width: 100%;
 	height: 2px;
-	background: #aaa;
+	background: #eee;
 	transition: all 0.3s ease;
 }
 .button-container { cursor: context-menu; }
@@ -164,17 +164,35 @@ html, body {
 
 /* Main */
 main {
-	margin-top: 8rem;
+	/*margin-top: 8rem;*/
 	color: #111;
 }
 
 
+/* Home Section 1 */
+.bg-main {
+	background-image: url("../dump/4.png");
+	background-size: contain;
+}
+
+
+.bracket div { float: left; }
+.bracket-l, .bracket-r {
+	position: relative;
+	height: 60vh;
+	width: 30px;
+	border-bottom: 1px solid #FFA500;
+	border-top: 1px solid #FFA500;
+}
+.bracket-l { border-left: 1px solid #FFA500; }
+.bracket-r { border-right: 1px solid #FFA500; clear:right; }
 
 
 
-
-
-
+#footer {
+	background-image: url('../dump/1.jpg');
+	background: cover;
+}
 
 
 

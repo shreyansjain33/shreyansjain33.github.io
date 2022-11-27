@@ -397,11 +397,42 @@ position: relative;		-webkit-filter: blur(0);
   }
 }
 
-
-
-
+/* Waves Background */
 html, body { height: 100%; }
 body { margin: 0; background: #000; }
 canvas { display: block; }
 .waves { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
+
+
+/* Responsive CSS Starts */
+
+/* Screen Nav */
+@media screen and (max-width: 730px) {
+	#sm-nav {
+		font-size: 3em;
+	}
+
+	.menu .collapse-nav {
+		flex-flow: column;
+		display: grid;
+	}
+	.collapse-header .button-container {
+		width: 40px;
+		height: 35px;
+		right: 50px;
+		top: 40px;
+	}
+	.collapse-header .button-container span {
+		height: 2px;
+		background: #aaa;
+		transition: all 0.3s ease;
+	}
+	.collapse-header .menu .collapse-nav {
+		margin-left: 10px;
+		padding: 20px 0;
+	}
+	.button-container:hover .top {	top: 0px; }
+	.button-container:hover .bottom { top: 20px; }
+
+}
 

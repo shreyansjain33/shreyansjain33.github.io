@@ -56,7 +56,7 @@ function clickNav(e) {
 
 // FullPage
 (function() {
-  $('#main-view').fullpage();
+  $('#main-view').fullpage({licenseKey:'gplv3-license'});
 })();
 
 

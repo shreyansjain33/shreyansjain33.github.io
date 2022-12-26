@@ -1,6 +1,14 @@
 
+Developed by: Shreyans Kumar Jain
+
 
 Components developed by:
+
+Bootstrap: https://getbootstrap.com/
+Jquery: https://jquery.com/
+FullPage: https://github.com/alvarotrigo/fullPage.js - GPLv3
+Shader Program: https://github.com/bsehovac/shader-program
+Font Awesome: https://fontawesome.com/
 
 https://codepen.io/Acuetouag/pen/vOgmza
 https://codepen.io/IanHazelton/pen/EyGVJo

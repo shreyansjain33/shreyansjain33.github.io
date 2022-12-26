@@ -1,87 +1,23 @@
-
-
-// hamburger menu animation and top nav extending
-const menuBtn = document.querySelector(".button-container");
-const collapseNav = document.querySelector(".menu");
-menuBtn.addEventListener("click", navMenu);
-function navMenu() {
-  menuBtn.classList.contains("active")
-    ? (menuBtn.classList.remove("active"), collapseNav.classList.remove("open"))
-    : (menuBtn.classList.add("active"), collapseNav.classList.add("open"));
-}
-
-// left-side page nav
-function clickNav(e) {
-  let key = e.target.getAttribute("data-key");
-
-  slides.forEach(slide => {
-    if (slide.getAttribute("data-key") === key) {
-      e.target.classList.add("selected");
-      slide.classList.add("current");
-      slide.classList.remove("next");
-      slide.classList.remove("prev");
-      slide.nextElementSibling != null
-        ? (slide.nextElementSibling.classList.add("next"),
-          slide.nextElementSibling.classList.remove("current"),
-          document
-            .getElementById("footerWrapper")
-            .classList.remove("last-slide"),
-          document.getElementById("arrowIcon").classList.remove("last-slide"),
-          document.getElementById("footerNav").classList.remove("last-slide"))
-        : (document.getElementById("footerWrapper").classList.add("last-slide"),
-          document.getElementById("arrowIcon").classList.add("last-slide"),
-          document.getElementById("footerNav").classList.add("last-slide"));
-
-      if (slide.previousElementSibling) {
-        slide.previousElementSibling.classList.add("prev");
-        slide.previousElementSibling.classList.remove("current");
-      }
-    } else {
-      let slideKey = slide.getAttribute("data-key");
-
-      slideKey > key
-        ? (slide.classList.replace("current", "next"),
-          slide.classList.replace("prev", "next"))
-        : (slide.classList.replace("current", "prev"),
-          slide.classList.replace("next", "prev"));
-
-      pageNav.forEach(dot => {
-        if (dot.getAttribute("data-key") === slideKey) {
-          dot.classList.remove("selected");
-        }
-      });
-    }
-  });
-}
-
 // FullPage
 (function() {
   $('#main-view').fullpage({licenseKey:'gplv3-license'});
 })();
 
-
-// https://github.com/bsehovac/shader-program
+// shader-program
 const pointSize=2.5
 const waves=new ShaderProgram(document.querySelector('.waves'),{texture:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAb1BMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8v0wLRAAAAJHRSTlMAC/goGvDhmwcExrVjWzrm29TRqqSKenRXVklANSIUE8mRkGpv+HOfAAABCElEQVQ4y4VT13LDMAwLrUHteO+R9f/fWMfO6dLaPeKVEECRxOULWsEGpS9nULDwia2Y+ALqUNbAWeg775zv+sA4/FFRMxt8U2FZFCVWjR/YrH4/H9sarclSKdPMWKzb8VsEeHB3m0shkhVCyNzeXeAQ9Xl4opEieX2QCGnwGbj6GMyjw9t1K0fK9YZunPXeAGsfJtYjwzxaBnozGGorYz0ypK2HzQSYx1y8DgSRo2ewOiyh2QWOEk1Y9OrQV0a8TiBM1a8eMHWYnRMy7CZ4t1CmyRkhSUvP3gRXyHOCLBxNoC3IJv//ZrJ/kxxUHPUB+6jJZZHrpg6GOjnqaOmzp4NDR48OLxn/H27SRQ08S0ZJAAAAAElFTkSuQmCC',uniforms:{size:{type:'float',value:pointSize},field:{type:'vec3',value:[0,0,0]},speed:{type:'float',value:5},},vertex:`
     #define M_PI 3.1415926535897932384626433832795
-
     precision highp float;
-
     attribute vec4 a_position;
     attribute vec4 a_color;
-
     uniform float u_time;
     uniform float u_size;
     uniform float u_speed;
     uniform vec3 u_field;
     uniform mat4 u_projection;
-
     varying vec4 v_color;
-
     void main() {
-
       vec3 pos = a_position.xyz;
-
       pos.y += (
         cos(pos.x / u_field.x * M_PI * 8.0 + u_time * u_speed) +
         sin(pos.z / u_field.z * M_PI * 8.0 + u_time * u_speed)
@@ -89,20 +25,13 @@ const waves=new ShaderProgram(document.querySelector('.waves'),{texture:'data:im
 
       gl_Position = u_projection * vec4( pos.xyz, a_position.w );
       gl_PointSize = ( u_size / gl_Position.w ) * 100.0;
-
       v_color = a_color;
-
     }`,fragment:`
     precision highp float;
-
     uniform sampler2D u_texture;
-
     varying vec4 v_color;
-
     void main() {
-
       gl_FragColor = v_color * texture2D(u_texture, gl_PointCoord);
-
     }`,onResize(w,h,dpi){const position=[],color=[]
 const width=400*(w/h)
 const depth=400

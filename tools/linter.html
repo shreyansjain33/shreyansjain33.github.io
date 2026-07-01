@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Share - Cloudflare Backend</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            resize: vertical;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #f5576c;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: white;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            margin-top: 20px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(245, 87, 108, 0.4);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .output {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .output h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .output-text {
+            color: #555;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .share-box {
+            margin-top: 30px;
+            padding: 20px;
+            background: #e8f5e9;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .share-box h3 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+
+        .url-display {
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .copy-btn {
+            padding: 10px 20px;
+            background: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        .copy-btn:hover {
+            background: #45a049;
+        }
+
+        .new-btn {
+            padding: 10px 20px;
+            background: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .new-btn:hover {
+            background: #0b7dda;
+        }
+
+        .info {
+            margin-top: 15px;
+            padding: 10px;
+            background: #e3f2fd;
+            border-radius: 5px;
+            font-size: 12px;
+            color: #1976d2;
+        }
+
+        .error {
+            margin-top: 15px;
+            padding: 15px;
+            background: #ffebee;
+            border-radius: 5px;
+            color: #c62828;
+            display: none;
+        }
+
+        .setup-warning {
+            margin-top: 20px;
+            padding: 20px;
+            background: #fff3e0;
+            border-radius: 10px;
+            border-left: 4px solid #ff9800;
+        }
+
+        .setup-warning h3 {
+            color: #e65100;
+            margin-bottom: 10px;
+        }
+
+        .setup-warning code {
+            background: #fff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔗 Text Share</h1>
+        <p class="subtitle">Share text with short, dictatable URLs</p>
+
+        <div id="input-section">
+            <textarea id="textInput" placeholder="Paste or type your text here..."></textarea>
+
+            <button id="createBtn" onclick="createPaste()">
+                Create Short Link
+            </button>
+
+            <div class="info">
+                💡 Creates a short URL like: yoursite.com/#a7x9 (dictatable over phone!)
+            </div>
+        </div>
+
+        <div class="share-box" id="shareBox">
+            <h3>✅ Link Created!</h3>
+            <div class="url-display" id="urlDisplay"></div>
+            <button class="copy-btn" onclick="copyURL()">📋 Copy Link</button>
+            <button class="new-btn" onclick="reset()">Create New</button>
+        </div>
+
+        <div class="output" id="output">
+            <h3>📄 Shared Text:</h3>
+            <div class="output-text" id="outputText"></div>
+            <button class="new-btn" onclick="reset()" style="margin-top: 15px;">Create New</button>
+        </div>
+
+        <div class="error" id="error"></div>
+    </div>
+
+    <!-- LZ-String compression library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.5.0/lz-string.min.js"></script>
+
+    <script>
+        const API_ENDPOINT = 'https://text-share-worker.pastestore.workers.dev';
+        const USE_LOCAL_STORAGE_DEMO = false;
+
+        async function createPaste() {
+            const text = document.getElementById('textInput').value.trim();
+            const btn = document.getElementById('createBtn');
+
+            if (!text) {
+                showError('Please enter some text first!');
+                return;
+            }
+
+            // Disable button and show loading
+            btn.disabled = true;
+            btn.innerHTML = 'Creating...<span class="loading"></span>';
+
+            try {
+                // Compress the text
+                const compressed = LZString.compressToBase64(text);
+
+                let id;
+
+                if (USE_LOCAL_STORAGE_DEMO) {
+                    // Demo mode: use localStorage
+                    id = generateID();
+                    localStorage.setItem(`paste_${id}`, compressed);
+                } else {
+                    // Production mode: call Cloudflare Worker
+                    const response = await fetch(`${API_ENDPOINT}/create`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ data: compressed })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Server error: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    id = result.id;
+                }
+
+                // Generate shareable URL
+                const shareURL = `${window.location.origin}${window.location.pathname}#${id}`;
+
+                // Show share box
+                document.getElementById('urlDisplay').textContent = shareURL;
+                document.getElementById('shareBox').style.display = 'block';
+                document.getElementById('input-section').style.display = 'none';
+
+            } catch (error) {
+                console.error('Error creating paste:', error);
+                showError(`Failed to create link: ${error.message}. Make sure the backend is configured.`);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = 'Create Short Link';
+            }
+        }
+
+        async function loadPaste(id) {
+            try {
+                let compressed;
+
+                if (USE_LOCAL_STORAGE_DEMO) {
+                    // Demo mode: load from localStorage
+                    compressed = localStorage.getItem(`paste_${id}`);
+                    if (!compressed) {
+                        throw new Error('Paste not found');
+                    }
+                } else {
+                    // Production mode: call Cloudflare Worker
+                    const response = await fetch(`${API_ENDPOINT}/get/${id}`);
+
+                    if (!response.ok) {
+                        if (response.status === 404) {
+                            throw new Error('Paste not found or expired');
+                        }
+                        throw new Error(`Server error: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    compressed = result.data;
+                }
+
+                // Decompress the text
+                const decompressed = LZString.decompressFromBase64(compressed);
+
+                if (!decompressed) {
+                    throw new Error('Failed to decompress data');
+                }
+
+                // Show output
+                document.getElementById('outputText').textContent = decompressed;
+                document.getElementById('output').style.display = 'block';
+                document.getElementById('input-section').style.display = 'none';
+
+            } catch (error) {
+                console.error('Error loading paste:', error);
+                showError(`Failed to load text: ${error.message}`);
+                document.getElementById('input-section').style.display = 'block';
+            }
+        }
+
+        function generateID() {
+            // Generate short alphanumeric ID (a-z, 0-9)
+            const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+            let id = '';
+            for (let i = 0; i < 6; i++) {
+                id += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return id;
+        }
+
+        function copyURL() {
+            const url = document.getElementById('urlDisplay').textContent;
+            navigator.clipboard.writeText(url).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✅ Copied!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            }).catch(err => {
+                console.error('Copy failed:', err);
+                showError('Failed to copy to clipboard');
+            });
+        }
+
+        function reset() {
+            document.getElementById('textInput').value = '';
+            document.getElementById('shareBox').style.display = 'none';
+            document.getElementById('output').style.display = 'none';
+            document.getElementById('input-section').style.display = 'block';
+            document.getElementById('error').style.display = 'none';
+            window.location.hash = '';
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('error');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            setTimeout(() => {
+                errorDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        // Check URL hash on load
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                loadPaste(hash);
+            }
+        });
+
+        // Show demo mode indicator
+        if (USE_LOCAL_STORAGE_DEMO) {
+            console.log('🔧 Running in DEMO mode (localStorage). Links only work on this device.');
+        }
+    </script>
+</body>
+</html>
